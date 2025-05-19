@@ -32,15 +32,14 @@ let computerScore = 0;
 function playround(humanChoiceLower, computerChoice){
     if (humanChoiceLower == "paper" && computerChoice =="rock"){
         humanScore += 1;
-        return "Winner: Player";
+        return "winner: Player";
     }else if (humanChoiceLower == "scissors" && computerChoice == "paper"){
         humanScore += 1;
-        return "Winner: Player";
+        return "winner: Player";
     }else if (humanChoiceLower == "rock" && computerChoice == "scissors"){
         humanScore +=1;
-        return "Winner: Player";
+        return "winner: Player";
     }else if (humanChoiceLower == computerChoice){
-        return "Empate";
     }else {
         computerScore += 1;
         return "Winner: bot";
@@ -52,17 +51,17 @@ function setBoard(humanChoiceLower, computerChoice, winner){
     player.innerHTML = "player: " + humanChoiceLower;
     let bot  = document.getElementById("bot");
     bot.innerHTML = "Bot: " + computerChoice;
-    if (winner == "Winner: bot"){
+    if (winner == "winner: Player"){
         player.style.color = "green";
         bot.style.color = "red";
-    } else if (winner == "Winner: Player"){
+    } else if (winner == "Winner: bot"){
         player.style.color = "red";
         bot.style.color = "green";
     } else {
         player.style.color = "grey";
         bot.style.color = "grey";
 }
-document.getElementeById("result").innerHTML = winner;
+document.getElementById("result").innerHTML = winner;
 document.getElementById("humanScore").innerHTML = "Player: " + humanScore;
 document.getElementById("computerScore").innerHTML = "Computer: " + computerScore
 }
@@ -71,7 +70,7 @@ document.getElementById("computerScore").innerHTML = "Computer: " + computerScor
 function playgame(){
         let humanChoice = getHumanChoice();
         let computerChoice = getComputerChoice();
-        let winner = playround(computerChoice, humanChoice);
+        let winner = playround(humanChoice, computerChoice);
         setBoard (humanChoice, computerChoice, winner);
 }
 
