@@ -4,61 +4,75 @@
 function getComputerChoice() {
     numRD = Math.random();
     if (numRD < 0.34) {
-        CpChoice = "rock";
-        console.log(CpChoice);
-        return CpChoice;
+        computerChoice = "rock";
+        console.log(computerChoice);
+        return computerChoice;
     } else if (numRD <= 0.67) {
-        CpChoice = "paper";
-        console.log(CpChoice);
-        return CpChoice;
+        computerChoice = "paper";
+        console.log(computerChoice);
+        return computerChoice;
     } else {
-        CpChoice = "scissors";
-        console.log(CpChoice);
-        return CpChoice;
+        computerChoice = "scissors";
+        console.log(computerChoice);
+        return computerChoice;
     }
 }
-// escolha do H
+// escolha do Human
 function getHumanChoice(){
-    let Hchoice = prompt();
-    HchoiceL = Hchoice.toLowerCase;
-    return HchoiceL
+    let humanChoiceLower = prompt();
+    humanChoiceLower = humanChoiceLower.toLowerCase();
+    return humanChoiceLower
 }
 
 // placar
-let HScore = 0;
-let CpScore = 0;
+let humanScore = 0;
+let computerScore = 0;
 
 // validação
-function playround(){
-if (HchoiceL == "paper" && CpChoice =="rock"){
-    HScore += 1;
-}else if (HchoiceL == "scissors" && CpChoice == "paper"){
-    HScore += 1;
-}else if (HchoiceL == "rock" && CpChoice == "paper"){
-    HScore
-}else {
-    CpScore += 1;
-}
+function playround(humanChoiceLower, computerChoice){
+    if (humanChoiceLower == "paper" && computerChoice =="rock"){
+        humanScore += 1;
+        return "Winner: Player";
+    }else if (humanChoiceLower == "scissors" && computerChoice == "paper"){
+        humanScore += 1;
+        return "Winner: Player";
+    }else if (humanChoiceLower == "rock" && computerChoice == "scissors"){
+        humanScore +=1;
+        return "Winner: Player";
+    }else if (humanChoiceLower == computerChoice){
+        return "Empate";
+    }else {
+        computerScore += 1;
+        return "Winner: bot";
+    }
 }
 
+function setBoard(humanChoiceLower, computerChoice, winner){
+    let player = document.getElementById("player");
+    player.innerHTML = "player: " + humanChoiceLower;
+    let bot  = document.getElementById("bot");
+    bot.innerHTML = "Bot: " + computerChoice;
+    if (winner == "Winner: bot"){
+        player.style.color = "green";
+        bot.style.color = "red";
+    } else if (winner == "Winner: Player"){
+        player.style.color = "red";
+        bot.style.color = "green";
+    } else {
+        player.style.color = "grey";
+        bot.style.color = "grey";
+}
+document.getElementeById("result").innerHTML = winner;
+document.getElementById("humanScore").innerHTML = "Player: " + humanScore;
+document.getElementById("computerScore").innerHTML = "Computer: " + computerScore
+}
 
 // tudo feito
 function playgame(){
-    let round =1 
-    while (round<6){
-        console.log("Round " + round);
-        let Pc = getComputerChoice();
-        let Hm = getHumanChoice();
-        playround (Pc, Hm);
-        round += 1;
-    }
-    if (HScore>CpScore){
-        return"perdeu, que triste"
-    }else if (HScore=CpScore){
-        return"você empatou, incrivel só que não"
-    }else{
-        return"ganhou, que um parabéns????"
-    }
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        let winner = playround(computerChoice, humanChoice);
+        setBoard (humanChoice, computerChoice, winner);
 }
 
-console.log(playgame());
+

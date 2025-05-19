@@ -6,8 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="javascript.js"></script>
+    <button id="btn" >Play</button>
+    <a id="player">Player </a>
+    <a id="bot">Bot </a>
+    <a id="result">result </a>
+    <a id="HumanScore">Player </a>
+    <a id="computerScore">Computer </a>
     
-    <img style="width: 100%; height: 100%; " src="./warning-sign-2677398_6401.jpg">
+    <script src="javascript.js"></script>
+    <script>
+        document.getElementById("btn").addEventListener("click", () => {
+            playgame();
+        });
+    </script>
+    
+    
 </body>
 </html>
